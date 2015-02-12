@@ -1,16 +1,8 @@
 module.exports = {
-
-	init: function(){
-
-		this.setStringFormatToPrototype();
-
-	},
-	setStringFormatToPrototype: function () {
-		String.prototype.format = function (){
-	    	var args = arguments;
-	    	return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function (curlyBrack, index) {
-	        	return ((curlyBrack == "{{") ? "{" : ((curlyBrack == "}}") ? "}" : args[index]));
-	    	});
-		}
-	};
+	format: function (targetString) {
+    	var args = arguments;
+    	return targetString.replace(/\{\{|\}\}|\{(\d+)\}/g, function (curlyBrack, index) {
+        	return ((curlyBrack == "{{") ? "{" : ((curlyBrack == "}}") ? "}" : args[index+1]));
+    	});
+	}
 }

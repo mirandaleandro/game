@@ -1,4 +1,5 @@
 var memoryController = require('memoryController');
+var creepController = require('creepController');
 
 module.exports = {
      
@@ -19,8 +20,8 @@ module.exports = {
      
      getNextCreepConfiguration: function(){
         var currentSpawnerLevel = this.getCurrentLevel();
-        var indexOfNextCreepToSpawn = this.indexOfNextCreepToSpawn();
-        var creepRole = currentSpawnerLevel.body[indexOfNextCreepToSpawn];
+        var indexOfNextCreepToSpawn = this.getIndexOfNextCreepToSpawn();
+        var creepRole = currentSpawnerLevel.buildQueue[indexOfNextCreepToSpawn];
         return creepController.getCreepTemplateWithRole(creepRole);
      },
 
@@ -47,16 +48,20 @@ module.exports = {
 
      getCurrentLevel: function(){
         var currentSpawnerLevelIndex = this.getCurrentSpawnerLevelIndex();
-        return Memory.spawner.levels[currentSpawnerLevel];
+        return Memory.spawner.levels[currentSpawnerLevelIndex];
      },
 
      getCurrentBody: function(){
         return this.getCurrentLevel.body;
      },
 
+     getIndexOfNextCreepToSpawn: function(){
+        return Memory.spawner.indexOfNextCreepToSpawn;
+     },
+
      updateIndexOfNextCreepToSpawn: function(updateIfLast){
         var currentBodyLength = this.getCurrentBody().length;
-        var newIndex = Memory.spawner.indexOfNextCreepToSpawn + 1;
+        var newIndex = this.getIndexOfNextCreepToSpawn() + 1;
         if(updateIfLast && currentBodyLength >= newIndex)
             this.incrementSpawnerLevelIfApplicable();
 

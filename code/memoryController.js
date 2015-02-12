@@ -11,7 +11,7 @@
      
      init:function(){
          
-        if(gameController.isFirstTick)
+        if(gameController.isFirstTick())
         {
             this.initCreepMemory();    
             this.initSpawnerMemory();
@@ -22,7 +22,7 @@
      },
      initCreepMemory: function(){
          
-         Memory.creepTemplate = [
+         Memory.creep = [
              {
                 role:'warrior',
                 body: [Game.ATTACK, Game.ATTACK, Game.MOVE],
@@ -63,7 +63,7 @@
          
      },  
      initSpawnerMemory: function (){
-        
+        debugger;
         Memory.spawner = {
             
             currentLevelIndex: 0,
@@ -71,10 +71,10 @@
 
             levels:[
                 {
-                    build:['miner','transport','miner']
+                    buildQueue:['miner','transport','miner']
                 },
                 {
-                    build:['warrior','warrior','warrior']
+                    buildQueue:['warrior','warrior','warrior']
                 }
             ]
         }
