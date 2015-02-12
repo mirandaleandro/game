@@ -1,11 +1,24 @@
  module.exports = {
      
      init: function(){
-         moveScreeps();
+         this.moveCreeps();
      },
-     moveScreeps:function(){
+     moveCreeps:function(){
          
+     },
+     getCreepTemplateWithRole: function(role){
+     	var creepMemoryTemplate = Memory.creep.filter( function(creepTemplate){ return creepTemplate.role == role; } );
+
+     	return {
+     		body: creepMemoryTemplate.body,
+     		name: creepMemoryTemplate.nameTemplate.format(creepMemoryTemplate.count),
+     		metadata: {
+     			role: creepMemoryTemplate.role
+     		}
+     	};
      }
+
+
      
      
  }

@@ -1,7 +1,16 @@
 //Main code that holds the inital steps of the game logic
 
-var creepCreator = require('creepCreator');
+var utils = require('utils'); 
 
-creepCreator.init();
+var memoryController = require('memoryController');    
+var gameController = require('gameController');
+var creepController = require('creepController');
+var spawnerController = require('spawnerController');
+
+utils.init();
+memoryController.init();
+gameController.init();
+spawnerController.init();
+creepController.init();
 
 
