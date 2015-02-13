@@ -1,7 +1,4 @@
-
-
 //Main code that holds the inital steps of the game logic
-
 
 var memoryController = require('memoryController');    
 var gameController = require('gameController');

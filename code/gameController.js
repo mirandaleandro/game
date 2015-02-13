@@ -10,10 +10,6 @@
      
      init:function(){
        
-     },
-     
-     isFirstTick: function(){
-         return Game.time === 0;
      }
      
  }

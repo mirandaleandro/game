@@ -9,10 +9,11 @@
          
      },
      getCreepTemplateWithRole: function(role){
-     	var creepMemoryTemplate = Memory.creep.filter( function(creepTemplate){ return creepTemplate.role == role; } );
+     	var creepMemoryTemplate = Memory.creep.filter( function(creepTemplate){ return creepTemplate.role == role; } )[0];
+        var creepNameFromTemplate = creepMemoryTemplate.nameTemplate.concat(creepMemoryTemplate.count);
      	return {
      		body: creepMemoryTemplate.body,
-     		name: utils.format(creepMemoryTemplate.nameTemplate, creepMemoryTemplate.count),
+     		name: creepNameFromTemplate,
      		metadata: {
      			role: creepMemoryTemplate.role
      		}

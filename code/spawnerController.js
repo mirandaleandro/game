@@ -30,12 +30,12 @@ module.exports = {
      },
 
      setCurrentSpawnerLevelIndex: function(newLevel){
-        if(this.isValidSpawnerLevelIndex)
+        if(this.isValidSpawnerLevelIndex(newLevel))
             Memory.spawner.currentLevelIndex = newLevel;
      },
 
      isValidSpawnerLevelIndex: function(level){
-        return newLevel >= 0 && newLevel <= this.maxSpawnerLevel();
+        return level >= 0 && level <= this.maxSpawnerLevel();
      },
 
      maxSpawnerLevel: function(){
@@ -52,7 +52,7 @@ module.exports = {
      },
 
      getCurrentBody: function(){
-        return this.getCurrentLevel.body;
+        return this.getCurrentLevel().buildQueue;
      },
 
      getIndexOfNextCreepToSpawn: function(){
@@ -68,4 +68,4 @@ module.exports = {
         Memory.spawner.indexOfNextCreepToSpawn = newIndex % currentBodyLength;
 
      }       
- };
+ };     

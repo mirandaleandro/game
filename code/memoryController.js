@@ -11,12 +11,11 @@
      
      init:function(){
          
-        if(gameController.isFirstTick())
+        if(Memory.resetData === undefined || Memory.resetData === true)
         {
             this.initCreepMemory();    
             this.initSpawnerMemory();
-            
-            
+            Memory.resetData = false;
         }
             
      },
@@ -26,44 +25,44 @@
              {
                 role:'warrior',
                 body: [Game.ATTACK, Game.ATTACK, Game.MOVE],
-                nameTemplate:"Warrior{0}",
+                nameTemplate:"Warrior",
                 count:0
              },
              {
                 role:'swordsman',
                 body: [Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.MOVE],
-                nameTemplate:"Swordsman{0}",
+                nameTemplate:"Swordsman",
                 count:0
              },
              {
                 role:'archer',
                 body:[Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE],
-                nameTemplate:"Archer{0}",
+                nameTemplate:"Archer",
                 count:0
              },
              {
                 role:'longbowman',
                 body:[Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE],
-                nameTemplate:"Longbowman{0}",
+                nameTemplate:"Longbowman",
                 count:0
              },
              {
                 role:'miner',
                 body: [Game.WORK, Game.WORK, Game.WORK, Game.WORK, Game.MOVE],
-                nameTemplate:"Miner{0}",
+                nameTemplate:"Miner",
                 count:0
              },
              {
                 role:'transport',
                 body: [Game.CARRY, Game.CARRY, Game.CARRY, Game.CARRY, Game.MOVE],
-                nameTemplate:"Transport{0}",
+                nameTemplate:"Transport",
                 count:0
              }
         ];
          
      },  
      initSpawnerMemory: function (){
-        debugger;
+        
         Memory.spawner = {
             
             currentLevelIndex: 0,
