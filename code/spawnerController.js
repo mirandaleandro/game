@@ -7,15 +7,25 @@ module.exports = {
          this.currentSpawner = Game.spawns.Spawn1;
          if(!this.currentSpawner.spawning)
             this.spawnCreep();
-         else
-            console.log("Current spawner is spawning");
      },
 
      spawnCreep: function(){
-        var screepConfiguration = this.getNextCreepConfiguration();
-        this.currentSpawner.createCreep(screepConfiguration.body, screepConfiguration.name, screepConfiguration.metadata);
-        this.updateIndexOfNextCreepToSpawn(true);
-        //this.currentSpawner.createCreep([Game.WORK, Game.WORK, Game.WORK, Game.WORK, Game.MOVE], "Miner2", {role:"miner"});
+        var screepTemplateInMemory = this.getNextCreepConfiguration();
+        var creepName = screepTemplateInMemory.nameTemplate.concat(screepTemplateInMemory.count);
+        var creepMetadata = { role:screepTemplateInMemory.role };
+        var spawningResult = this.currentSpawner.createCreep(screepTemplateInMemory.body, creepName, creepMetadata);
+        this.validateSpawningResult(spawningResult, screepTemplateInMemory);
+     },
+     
+     validateSpawningResult: function(spawningResult, screepTemplateInMemory){
+        if(_.isString(spawningResult)){
+            console.log("Creep created: " + spawningResult);
+            screepTemplateInMemory.count++;
+            this.updateIndexOfNextCreepToSpawn(true);
+        }
+        else{
+            console.log("Error in creating the creep " + spawningResult); 
+        }
      },
      
      getNextCreepConfiguration: function(){
@@ -62,10 +72,9 @@ module.exports = {
      updateIndexOfNextCreepToSpawn: function(updateIfLast){
         var currentBodyLength = this.getCurrentBody().length;
         var newIndex = this.getIndexOfNextCreepToSpawn() + 1;
-        if(updateIfLast && currentBodyLength >= newIndex)
+        if(updateIfLast && currentBodyLength <= newIndex)
             this.incrementSpawnerLevelIfApplicable();
-
         Memory.spawner.indexOfNextCreepToSpawn = newIndex % currentBodyLength;
 
      }       
- };     
+ };

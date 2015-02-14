@@ -48,13 +48,13 @@
              },
              {
                 role:'miner',
-                body: [Game.WORK, Game.WORK, Game.WORK, Game.WORK, Game.MOVE],
+                body: [Game.WORK, Game.WORK, Game.WORK, Game.CARRY, Game.MOVE],
                 nameTemplate:"Miner",
                 count:0
              },
              {
                 role:'transport',
-                body: [Game.CARRY, Game.CARRY, Game.CARRY, Game.CARRY, Game.MOVE],
+                body: [Game.CARRY, Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE],
                 nameTemplate:"Transport",
                 count:0
              }
@@ -70,10 +70,13 @@
 
             levels:[
                 {
-                    buildQueue:['miner','transport','miner']
+                    buildQueue:['miner','transport']
                 },
                 {
                     buildQueue:['warrior','warrior','warrior']
+                },
+                {
+                    buildQueue:['swordsman','swordsman','swordsman']
                 }
             ]
         }
