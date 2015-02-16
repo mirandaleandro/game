@@ -10,8 +10,7 @@
  module.exports = {
      
      init:function(){
-         
-        if(Memory.resetData === undefined || Memory.resetData === true)
+        if(Game.time === 0 || Memory.resetData === undefined || Memory.resetData === true)
         {
             this.initCreepMemory();    
             this.initSpawnerMemory();
@@ -24,19 +23,19 @@
          Memory.creep = [
              {
                 role:'warrior',
-                body: [Game.ATTACK, Game.ATTACK, Game.MOVE],
+                body: [Game.ATTACK, Game.MOVE],
                 nameTemplate:"Warrior",
                 count:0
              },
              {
                 role:'swordsman',
-                body: [Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.MOVE],
+                body: [Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.MOVE, Game.MOVE],
                 nameTemplate:"Swordsman",
                 count:0
              },
              {
                 role:'archer',
-                body:[Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE],
+                body:[Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.TOUGH, Game.MOVE, Game.MOVE],
                 nameTemplate:"Archer",
                 count:0
              },
@@ -57,6 +56,12 @@
                 body: [Game.CARRY, Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE],
                 nameTemplate:"Transport",
                 count:0
+             },
+             {
+                role:'nurse',
+                body: [Game.HEAL, Game.HEAL, Game.TOUGH, Game.MOVE, Game.MOVE],
+                nameTemplate:"Nurse",
+                count:0
              }
         ];
          
@@ -73,7 +78,7 @@
                     buildQueue:['miner','transport']
                 },
                 {
-                    buildQueue:['warrior','warrior','warrior']
+                    buildQueue:['swordsman','swordsman','nurse']
                 },
                 {
                     buildQueue:['swordsman','swordsman','swordsman']

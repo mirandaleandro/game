@@ -2,6 +2,7 @@
  var Miner = require('MinerClass');
  var Transport = require('TransportClass');
  var Warrior = require('WarriorClass');
+ var Nurse = require('NurseClass');
  
  module.exports = {
      
@@ -28,6 +29,9 @@
             case "warrior":
             case "swordsman":
                 return new Warrior(creep);
+            case "nurse":
+                return new Nurse(creep);
+                
             default:
                 return {
                     init: function(){

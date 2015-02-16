@@ -14,11 +14,7 @@
      
      this.startEnergyCollectionMode = function(){
         var closestDroppedEnergy = this.creep.pos.findClosest(Game.DROPPED_ENERGY);
-     
-        if(closestDroppedEnergy) 
-            this.goLoadTransport(closestDroppedEnergy);
-        else
-            this.moveCloseToMiner();
+        this.moveCloseToMiner();
         this.unloadAtBaseIfFull();
      }
      
@@ -39,9 +35,7 @@
      }
      
      this.moveCloseToMiner = function(){
-        this.creep.moveTo(Game.creeps.Miner0);//TODO hardcode value must be replaced
-        //TODO move to the closest as possible to a miner if I can't find energy
-        //I'm assuming that the miner is mining
+        this.creep.moveTo(Game.creeps.Miner0);//TODO make this dynamic
      }
      
  }

@@ -1,3 +1,4 @@
+var _ = require("lodash");
 var memoryController = require('memoryController');
 var creepController = require('creepController');
 
