@@ -1,5 +1,3 @@
-
-
 var Creep = function(creep){
   this.creep = creep;
 }
@@ -12,4 +10,8 @@ Creep.prototype.init = function(){
 
 Creep.prototype.isDamaged = function(){
   return this.creep.hits < this.creep.hitsMax;
+}
+
+Creep.prototype.isFull = function(){
+  return this.creep.energy == this.creep.energyCapacity; 
 }

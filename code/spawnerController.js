@@ -13,8 +13,7 @@ module.exports = {
      spawnCreep: function(){
         var screepTemplateInMemory = this.getNextCreepConfiguration();
         var creepName = screepTemplateInMemory.nameTemplate.concat(screepTemplateInMemory.count);
-        var creepMetadata = { role:screepTemplateInMemory.role };
-        var spawningResult = this.currentSpawner.createCreep(screepTemplateInMemory.body, creepName, creepMetadata);
+        var spawningResult = this.currentSpawner.createCreep(screepTemplateInMemory.body, creepName, screepTemplateInMemory);
         this.validateSpawningResult(spawningResult, screepTemplateInMemory);
      },
      

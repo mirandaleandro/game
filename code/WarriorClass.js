@@ -5,7 +5,7 @@
  * You can import it from another modules like this:
  * var mod = require('WarriorClass'); // -> 'a thing'
  */
-var Creep = require('lodash');
+var Creep = require('CreepClass');
 
 var Warrior = function(creep){
   this.creep = creep;

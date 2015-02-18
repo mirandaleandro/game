@@ -5,34 +5,36 @@
  * You can import it from another modules like this:
  * var mod = require('MinerClass'); // -> 'a thing'
  */
- module.exports = function(creep){
-     this.creep = creep;
+
+var Creep = require('CreepClass'); 
+
+var Miner = function(creep){
+    this.creep = creep;
+}
+
+module.exports = Miner;
+Miner.prototype = Object.create(Creep.prototype);
+Miner.prototype.constructor = Miner;
+
+Miner.prototype.init = function(){
+  this.startMiningMode();
+}
      
-     this.init = function(){
-         this.startMiningMode();
-     }
+Miner.prototype.startMiningMode = function(){
+  if(this.isFull())
+    this.transferEnergy();
+  else
+    this.harvestClosestSource();
+}
      
-     this.startMiningMode = function(){
-        if(this.isFull())
-            this.transferEnergy();
-        else
-            this.harvestClosestSource();
-     }
-     
-     this.transferEnergy = function(){
-        this.creep.transferEnergy(Game.creeps['Transport0']);//TODO get it dynamically
-     }
-     
-     this.isFull = function(){
-        return this.creep.energy == this.creep.energyCapacity; 
-     }
-     
-     this.harvestClosestSource = function(){
-        var closestActiveSource = this.creep.pos.findClosest(Game.SOURCES_ACTIVE);
-        if(closestActiveSource) {
-            this.creep.moveTo(closestActiveSource);
-            this.creep.harvest(closestActiveSource);
-        }
-     }
-     
- }
+Miner.prototype.transferEnergy = function(){
+  this.creep.transferEnergy(Game.creeps['Transport0']);
+}
+
+Miner.prototype.harvestClosestSource = function(){
+    var closestActiveSource = this.creep.pos.findClosest(Game.SOURCES_ACTIVE);
+    if(closestActiveSource) {
+        this.creep.moveTo(closestActiveSource);
+        this.creep.harvest(closestActiveSource);
+    }        
+}
