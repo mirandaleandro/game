@@ -9,26 +9,29 @@
      this.creep = creep;
      
      this.init = function(){
-        this.startDummyAttackMode();
+        this.startAttackWhenHealthyMode();
      }
      
-     this.startDummyAttackMode = function(){
+     this.startAttackWhenHealthyMode = function(){
        var target = this.creep.pos.findClosest(Game.HOSTILE_CREEPS);
-       if(this.isDamaged())
-       {
-           this.creep.moveTo(Game.flags.Flag2);
-           this.creep.attack(target);
-       }
-       else{
-           if(this.isTargetToBeAttacked(target)) {
-                this.creep.moveTo(target);
-                this.creep.attack(target);
+       if(this.isTargetToBeAttacked(target) && this.hasAttackParts()) {
+            this.creep.moveTo(target);
+            this.creep.attack(target);
+        }
+        else{
+            if(this.isDamaged())
+            {
+               this.creep.moveTo(Game.flags.Flag2);
+               this.creep.attack(target);
             }
             else{
-                this.creep.moveTo(Game.flags.Flag1);
+                this.creep.moveTo(Game.flags.Flag1);    
             }
-       }
-         
+        }
+     }
+     
+     this.hasAttackParts = function(){
+        return this.creep.getActiveBodyparts(Game.ATTACK) > 0;
      }
      
      this.isDamaged = function(){

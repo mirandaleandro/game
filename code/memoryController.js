@@ -10,7 +10,7 @@
  module.exports = {
      
      init:function(){
-        if(Game.time === 0 || Memory.resetData === undefined || Memory.resetData === true)
+        if( gameController.isFirstTick() || Memory.resetData === undefined || Memory.resetData === true)
         {
             this.initCreepMemory();    
             this.initSpawnerMemory();
@@ -18,6 +18,7 @@
         }
             
      },
+     
      initCreepMemory: function(){
          
          Memory.creep = [
@@ -53,7 +54,7 @@
              },
              {
                 role:'transport',
-                body: [Game.CARRY, Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE],
+                body: [Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE],
                 nameTemplate:"Transport",
                 count:0
              },
@@ -66,10 +67,9 @@
         ];
          
      },  
+
      initSpawnerMemory: function (){
-        
         Memory.spawner = {
-            
             currentLevelIndex: 0,
             indexOfNextCreepToSpawn: 0,
 
@@ -81,7 +81,10 @@
                     buildQueue:['swordsman','swordsman','nurse']
                 },
                 {
-                    buildQueue:['swordsman','swordsman','swordsman']
+                    buildQueue:['swordsman','swordsman','swordsman','swordsman','swordsman','swordsman', 'nurse']
+                }, 
+                {
+                    buildQueue:['swordsman']
                 }
             ]
         }

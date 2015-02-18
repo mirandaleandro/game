@@ -25,7 +25,7 @@ module.exports = {
             this.updateIndexOfNextCreepToSpawn(true);
         }
         else{
-            console.log("Error in creating the creep " + spawningResult); 
+            //console.log("Error in creating the creep " + spawningResult); 
         }
      },
      

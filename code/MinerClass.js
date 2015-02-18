@@ -31,8 +31,7 @@
         var closestActiveSource = this.creep.pos.findClosest(Game.SOURCES_ACTIVE);
         if(closestActiveSource) {
             this.creep.moveTo(closestActiveSource);
-            var h = this.creep.harvest(closestActiveSource);
-            console.log("harvesting: " + h);
+            this.creep.harvest(closestActiveSource);
         }
      }
      

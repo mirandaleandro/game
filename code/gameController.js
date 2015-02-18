@@ -13,14 +13,21 @@
          this.setupStartFlags();
      },
      
+     isFirstTick: function(){
+        return Game.flags.GameHasStarted === undefined; 
+     },
+     
      setupStartFlags: function(){
-         
-        if(Memory.isStartupFlagsSet === undefined || Memory.isStartupFlagsSet === true)
+        if(this.isFirstTick())
         {
             //TODO this code must be refactored. Should no apply arbitrary rules to all rooms.
             _.forEach(Game.rooms, _.bind( function(room){
-                console.log("room is here: " + room)
-                room.createFlag(10, 30, 'AttackRange');
+                console.log("setting room flags.");
+                room.createFlag(0, 0, 'GameHasStarted');
+                room.createFlag(10, 26, 'AttackRange');
+                room.createFlag(7, 33, 'Flag1');
+                room.createFlag(4, 32, 'Flag2');
+                console.log("room flags set.");
             }, this ));
             
             Memory.isStartupFlagsSet = false;

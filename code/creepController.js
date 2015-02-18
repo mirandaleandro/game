@@ -42,6 +42,6 @@
      },
      
      getCreepTemplateWithRole: function(role){
-     	return Memory.creep.filter( function(creepTemplate){ return creepTemplate.role == role; } )[0];
+        return Memory.creep.filter( function(creepTemplate){ return creepTemplate.role == role; } )[0];
      }
  }
