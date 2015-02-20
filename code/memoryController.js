@@ -110,6 +110,9 @@
                 },
                 {
                     buildQueue:['swordsman','swordsman','swordsman','swordsman','nurse','assassin']
+                },
+                {
+                    buildQueue:['swordsman','swordsman','swordsman','swordsman','assassin']   
                 }
             ]
         }
