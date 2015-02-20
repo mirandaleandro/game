@@ -3,6 +3,9 @@
  var Transport = require('TransportClass');
  var Warrior = require('WarriorClass');
  var Nurse = require('NurseClass');
+ var Builder = require('BuilderClass');
+ var AssassinWarrior = require('AssassinWarrior');
+ var Settler = require('SettlerClass');
  
  module.exports = {
      
@@ -31,6 +34,12 @@
                 return new Warrior(creep);
             case "nurse":
                 return new Nurse(creep);
+            case "builder":
+                return new Builder(creep);
+            case "assassin":
+                return new AssassinWarrior(creep);
+            case "settler":
+                return new Settler(creep);
                 
             default:
                 return {

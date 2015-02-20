@@ -5,6 +5,7 @@
  * You can import it from another modules like this:
  * var mod = require('Transport'); // -> 'a thing'
  */
+var _ = require('lodash');
 var Creep = require('CreepClass');
 
 
@@ -39,6 +40,16 @@ Transport.prototype.unloadAtBaseIfFull = function(){
 }
 
 Transport.prototype.moveCloseToMiner = function(){
-  this.creep.moveTo(Game.creeps.Miner0);//TODO make this dynamic
+  this.creep.moveTo(this.getMostFullMiner());
+}
+
+Transport.prototype.getMostFullMiner = function(){
+  return _.max(this.getAllMiners(), function(c){ return c.energy; })
+}
+
+Transport.prototype.getAllMiners = function(){
+  return _.filter(Game.creeps, function(c) {
+      return c.memory.role == "miner";
+      });
 }
 

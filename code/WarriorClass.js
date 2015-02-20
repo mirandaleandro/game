@@ -20,7 +20,8 @@ Warrior.prototype.init = function(){
 }
 
 Warrior.prototype.startAttackWhenHealthyMode = function(){
-  var target = this.creep.pos.findClosest(Game.HOSTILE_CREEPS);
+  var target = this.getTargetToAttack();
+  
   if(this.isTargetToBeAttacked(target) && this.hasAttackParts()) {
     this.creep.moveTo(target);  
     this.creep.attack(target);
@@ -36,6 +37,8 @@ Warrior.prototype.startAttackWhenHealthyMode = function(){
     }
   }
 }
+
+Warrior.prototype.getTargetToAttack = Creep.prototype.getClosestEnemy;
  
 Warrior.prototype.hasAttackParts = function(){
   return this.creep.getActiveBodyparts(Game.ATTACK) > 0;
@@ -46,12 +49,14 @@ Warrior.prototype.isTargetToBeAttacked = function(target){
 }
  
 Warrior.prototype.isTargetInAttackRange = function(target){
-  if(target)
-  {
-    var attackRangeFlagPosition = Game.flags.AttackRange.pos;  
-    return target && target.pos.x < attackRangeFlagPosition.x && target.pos.y > attackRangeFlagPosition.y;
-  }
-  return false;
+  
+  return target;
+//   if(target)
+//   {
+//     var attackRangeFlagPosition = Game.flags.AttackRange.pos;  
+//     return target && target.pos.x < attackRangeFlagPosition.x && target.pos.y > attackRangeFlagPosition.y;
+//   }
+//   return false;
 }
  
 Warrior.prototype.isTargetChaseable = function(target){

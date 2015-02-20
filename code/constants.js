@@ -6,9 +6,9 @@
  * var mod = require('MinerClass'); // -> 'a thing'
  */
  module.exports = {
-     Flag{
-        CONCENTRATION_FLAG_PREFIX = "CP_",
-        HEAL_FLAG_PREFIX = "HP_"
+     Flag:{
+        CONCENTRATION_FLAG_PREFIX: "CP_",
+        HEAL_FLAG_PREFIX:"HP_"
      }
      
  }

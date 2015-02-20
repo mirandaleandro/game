@@ -7,6 +7,7 @@
  */
 
 var Creep = require('CreepClass'); 
+var Transport = require('TransportClass'); 
 
 var Miner = function(creep){
     this.creep = creep;
@@ -28,11 +29,22 @@ Miner.prototype.startMiningMode = function(){
 }
      
 Miner.prototype.transferEnergy = function(){
+  var closestTransport = this.getClosestEmptyTransport();    
+    
   this.creep.transferEnergy(Game.creeps['Transport0']);
 }
 
+Miner.prototype.getClosestEmptyTransport = function(){
+    return this.creep.pos.findClosest(Game.MY_CREEPS, {
+        filter: function(creep){
+            var transport = new Transport(creep);
+            return !transport.isFull();
+        }
+    });
+}
+
 Miner.prototype.harvestClosestSource = function(){
-    var closestActiveSource = this.creep.pos.findClosest(Game.SOURCES_ACTIVE);
+    var closestActiveSource = this.creep.pos.findClosest(Game.SOURCES);
     if(closestActiveSource) {
         this.creep.moveTo(closestActiveSource);
         this.creep.harvest(closestActiveSource);

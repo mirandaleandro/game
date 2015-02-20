@@ -15,3 +15,7 @@ Creep.prototype.isDamaged = function(){
 Creep.prototype.isFull = function(){
   return this.creep.energy == this.creep.energyCapacity; 
 }
+
+Creep.prototype.getClosestEnemy = function(){
+    return this.creep.pos.findClosest(Game.HOSTILE_CREEPS);
+}

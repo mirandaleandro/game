@@ -63,6 +63,25 @@
                 body: [Game.HEAL, Game.HEAL, Game.TOUGH, Game.MOVE, Game.MOVE],
                 nameTemplate:"Nurse",
                 count:0
+             },
+             {
+                role:'builder',
+                body: [Game.WORK, Game.WORK, Game.CARRY, Game.CARRY, Game.MOVE],
+                nameTemplate:"Builder",
+                count:0
+             },
+             {
+                role:'assassin',
+                body: [Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.MOVE, Game.MOVE],
+                nameTemplate:"Assassin",
+                count:0
+             },
+             {
+                role:'settler',
+                body: [Game.WORK, Game.WORK, Game.CARRY, Game.MOVE, Game.MOVE],
+                nameTemplate:"Settler",
+                hasVisitedSpawn: false,
+                count:0
              }
         ];
          
@@ -75,16 +94,22 @@
 
             levels:[
                 {
-                    buildQueue:['miner','transport']
+                    buildQueue:['miner','transport', 'miner','settler', 'builder']
                 },
                 {
-                    buildQueue:['swordsman','swordsman','nurse']
+                    buildQueue:['swordsman','nurse','swordsman',]
                 },
                 {
-                    buildQueue:['swordsman','swordsman','swordsman','swordsman','swordsman','swordsman', 'nurse']
+                    buildQueue:['settler']
+                },
+                {
+                    buildQueue:['swordsman','swordsman','swordsman','nurse']
                 }, 
                 {
-                    buildQueue:['swordsman']
+                    buildQueue:['assassin','assassin']
+                },
+                {
+                    buildQueue:['swordsman','swordsman','swordsman','swordsman','nurse','assassin']
                 }
             ]
         }
