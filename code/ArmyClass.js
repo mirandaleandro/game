@@ -10,6 +10,4 @@
      this.init = function(){
          
      }
-     
-     
  }

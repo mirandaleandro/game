@@ -29,9 +29,7 @@ Miner.prototype.startMiningMode = function(){
 }
      
 Miner.prototype.transferEnergy = function(){
-  var closestTransport = this.getClosestEmptyTransport();    
-    
-  this.creep.transferEnergy(Game.creeps['Transport0']);
+  this.creep.transferEnergy(this.getClosestEmptyTransport());
 }
 
 Miner.prototype.getClosestEmptyTransport = function(){

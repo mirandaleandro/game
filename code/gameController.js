@@ -10,6 +10,7 @@
  module.exports = {
      
      init: function(){
+         this.room = this.getRoom();
          this.setupStartStructures();
      },
      
@@ -20,26 +21,30 @@
      setupStartStructures: function(){
         if(this.isFirstTick())
         {
-            //TODO this code must be refactored. Should no apply arbitrary rules to all rooms.
-            _.forEach(Game.rooms, _.bind( function(room){
-                console.log("setting room flags.");
-                room.createFlag(0, 0, 'GameHasStarted');
-                room.createFlag(10, 26, 'AttackRange');
-                room.createFlag(35, 44, 'Flag1');
-                room.createFlag(35, 46, 'Flag2');
-                console.log("room flags set.");
-                
-                console.log("setting room structures.");
-                room.createConstructionSite(38, 44, Game.STRUCTURE_WALL);
-                room.createConstructionSite(39, 43, Game.STRUCTURE_WALL);
-                room.createConstructionSite(40, 42, Game.STRUCTURE_WALL);
-                room.createConstructionSite(42, 42, Game.STRUCTURE_WALL);
-                room.createConstructionSite(7, 47, Game.STRUCTURE_SPAWN);
-                console.log("room structures set.");
-            }, this ));
+            console.log("setting room flags.");
+            this.room.createFlag(0, 0, 'GameHasStarted');
+            this.room.createFlag(10, 26, 'AttackRange');
+            this.room.createFlag(36, 38, 'Flag1');
+            this.room.createFlag(34, 35, 'Flag2');
+            console.log("room flags set.");
             
+            console.log("setting room structures.");
+            this.room.createConstructionSite(37, 44, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(37, 43, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(37, 42, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(38, 41, Game.STRUCTURE_WALL);
+            //this.room.createConstructionSite(39, 41, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(40, 41, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(41, 41, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(42, 41, Game.STRUCTURE_WALL);
+            this.room.createConstructionSite(7, 47, Game.STRUCTURE_SPAWN);
+            console.log("room structures set.");
             Memory.isStartupFlagsSet = true;
         }
+     },
+     
+     getRoom: function(){
+        return _.values(Game.rooms)[0]; 
      }
      
  }

@@ -5,7 +5,8 @@
  * You can import it from another modules like this:
  * var mod = require('SettlerClass'); // -> 'a thing'
  */
-var Builder = require('BuilderClass'); 
+var Builder = require('BuilderClass');
+var SettlerCarrier = require('SettlerCarrierClass');
 
 var Settler = function(creep){
     this.creep = creep;
@@ -16,11 +17,43 @@ Settler.prototype = Object.create(Builder.prototype);
 Settler.prototype.constructor = Settler;
 
 Settler.prototype.init = function(){
+  this.carrier = new SettlerCarrier(Game.creeps.SettlerCarrier0);     
   this.nextConstructionSite = this.getNextConstructionSite();
+  
   if(!this.hasVisitedSpawn())
     this.moveToSpawn();  
   else     
-    this.startMiningAndBuildMode();
+    this.buildSpawnMode();
+}
+
+Settler.prototype.buildSpawnMode = function(){
+    if(this.carrier)
+        this.buildSpawnWithCarrier();    
+    else    
+        this.startMiningAndBuildMode();
+}
+
+Settler.prototype.buildSpawnWithCarrier = function(){
+  if(this.isBuilding())
+      this.creep.build(this.nextConstructionSite);
+  else
+      this.checkForKeepMining();      
+
+  this.carrier.followSettlerMode(this); 
+}
+
+Settler.prototype.checkForKeepMining = function(){
+
+  if(this.carrier.isFull() && this.isFull())
+  {
+    this.buildConstructionSite();
+  }
+  else
+  {
+    this.transferEnergy();
+    this.harvestClosestSource(); 
+  }
+
 }
 
 Settler.prototype.moveToSpawn = function(){

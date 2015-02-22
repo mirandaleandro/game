@@ -54,7 +54,7 @@ Warrior.prototype.isTargetInAttackRange = function(target){
 //   if(target)
 //   {
 //     var attackRangeFlagPosition = Game.flags.AttackRange.pos;  
-//     return target && target.pos.x < attackRangeFlagPosition.x && target.pos.y > attackRangeFlagPosition.y;
+//     return target &&  target.pos.y > attackRangeFlagPosition.y;
 //   }
 //   return false;
 }

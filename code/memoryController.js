@@ -14,9 +14,29 @@
         {
             this.initCreepMemory();    
             this.initSpawnerMemory();
+            this.initDefendPositions();
             Memory.resetData = false;
         }
             
+     },
+     
+     initDefendPositions: function(){
+         Memory.LegionPositions = [
+             {
+                name:"LegionPosition0",
+                x:41,
+                y:42
+             },
+             {
+                name:"LegionPosition0",
+                x:42,
+                y:42
+             },
+             {
+                name:"LegionPosition0",
+                x:43,
+                y:42
+             }];
      },
      
      initCreepMemory: function(){
@@ -60,7 +80,7 @@
              },
              {
                 role:'nurse',
-                body: [Game.HEAL, Game.HEAL, Game.TOUGH, Game.MOVE, Game.MOVE],
+                body: [Game.HEAL, Game.HEAL, Game.HEAL,  Game.MOVE, Game.MOVE],
                 nameTemplate:"Nurse",
                 count:0
              },
@@ -78,11 +98,26 @@
              },
              {
                 role:'settler',
-                body: [Game.WORK, Game.WORK, Game.CARRY, Game.MOVE, Game.MOVE],
+                body: [Game.WORK, Game.WORK, Game.CARRY, Game.WORK, Game.MOVE],
                 nameTemplate:"Settler",
                 hasVisitedSpawn: false,
                 count:0
+             },
+             {
+                role:'settler_carrier',
+                body: [Game.CARRY, Game.CARRY, Game.CARRY, Game.CARRY, Game.MOVE],
+                nameTemplate:"SettlerCarrier",
+                hasVisitedSpawn: false,
+                count:0
+             },
+             {
+                role:'legion',
+                body: [Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.TOUGH, Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.MOVE],
+                nameTemplate:"Legion",
+                hasVisitedSpawn: false,
+                count:0
              }
+             
         ];
          
      },  
@@ -100,7 +135,7 @@
                     buildQueue:['swordsman','nurse','swordsman',]
                 },
                 {
-                    buildQueue:['settler']
+                    buildQueue:['settler_carrier']
                 },
                 {
                     buildQueue:['swordsman','swordsman','swordsman','nurse']
@@ -113,6 +148,9 @@
                 },
                 {
                     buildQueue:['swordsman','swordsman','swordsman','swordsman','assassin']   
+                },
+                {
+                    buildQueue:['legion']   
                 }
             ]
         }
