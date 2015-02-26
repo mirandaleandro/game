@@ -7,10 +7,10 @@ var Legion = function(creep){
 
 module.exports = Legion;
 Legion.prototype = Object.create(Warrior.prototype);
-Legion.prototype.constructor = Warrior;
+Legion.prototype.constructor = Legion;
    
 Legion.prototype.init = function(){
-    
+    debugger;
   this.closestEnemy = this.getTargetToAttack();  
   this.legionPositions = this.getStandPositions();
   this.defendPositionMode();
@@ -30,6 +30,7 @@ Legion.prototype.attackWhenNear = function(){
 }
 
 Legion.prototype.moveToClosestStandPosition = function(){
+    debugger;
     var closestStandPosition = this.getClosestStandPosition();
     this.creep.moveTo(closestStandPosition);
 }

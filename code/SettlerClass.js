@@ -17,13 +17,18 @@ Settler.prototype = Object.create(Builder.prototype);
 Settler.prototype.constructor = Settler;
 
 Settler.prototype.init = function(){
-  this.carrier = new SettlerCarrier(Game.creeps.SettlerCarrier0);     
+  this.updateSettlerCarrier();
   this.nextConstructionSite = this.getNextConstructionSite();
   
   if(!this.hasVisitedSpawn())
     this.moveToSpawn();  
   else     
     this.buildSpawnMode();
+}
+
+Settler.prototype.updateSettlerCarrier = function(){
+    if(Game.creeps.SettlerCarrier0)
+        this.carrier = new SettlerCarrier(Game.creeps.SettlerCarrier0);
 }
 
 Settler.prototype.buildSpawnMode = function(){

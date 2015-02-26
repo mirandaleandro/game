@@ -2,6 +2,7 @@
  var Miner = require('MinerClass');
  var Transport = require('TransportClass');
  var Warrior = require('WarriorClass');
+ var Archer = require('ArcherClass');
  var Nurse = require('NurseClass');
  var Builder = require('BuilderClass');
  var Assassin = require('AssassinClass');
@@ -34,6 +35,8 @@
             case "warrior":
             case "swordsman":
                 return new Warrior(creep);
+            case "archer":
+                return new Archer(creep);
             case "nurse":
                 return new Nurse(creep);
             case "builder":

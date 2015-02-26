@@ -3,48 +3,71 @@
  * module.exports = 'a thing';
  *
  * You can import it from another modules like this:
- * var mod = require('MinerClass'); // -> 'a thing'
+ * var mod = require('NurseClass'); // -> 'a thing'
  */
+ 
+ var _ = require("lodash");
+ var Creep = require('CreepClass');
 
-var Creep = require('CreepClass'); 
-var Transport = require('TransportClass'); 
-
-var Miner = function(creep){
+ var Nurse = function(creep){
     this.creep = creep;
+ }
+
+module.exports = Nurse;
+Nurse.prototype = Object.create(Creep.prototype);
+Nurse.prototype.constructor = Nurse;
+    
+Nurse.prototype.init = function(){
+    this.closeRangeCreeps = this.findDamagedCreepsInRange(1);
+    this.longRangeCreeps = this.findDamagedCreepsInRange(3);
+    this.startHealArmyMode();
 }
 
-module.exports = Miner;
-Miner.prototype = Object.create(Creep.prototype);
-Miner.prototype.constructor = Miner;
+Nurse.prototype.startHealArmyMode = function(){
+    this.creep.moveTo(Game.flags.Flag2);
+    if(this.isThereAnyCloseRangeCreeps())
+        this.healCloseRangeCreep();
+    else
+        this.healLongRangeCreep();
+} 
 
-Miner.prototype.init = function(){
-  this.startMiningMode();
-}
-     
-Miner.prototype.startMiningMode = function(){
-  if(this.isFull())
-    this.transferEnergy();
-  else
-    this.harvestClosestSource();
-}
-     
-Miner.prototype.transferEnergy = function(){
-  this.creep.transferEnergy(this.getClosestEmptyTransport());
+Nurse.prototype.healCloseRangeCreep = function(){
+    if(this.closeRangeCreeps)
+    {
+        var creepToHeal = this.mostHitCreep(this.closeRangeCreeps)
+        this.creep.heal(creepToHeal);
+    }
 }
 
-Miner.prototype.getClosestEmptyTransport = function(){
-    return this.creep.pos.findClosest(Game.MY_CREEPS, {
-        filter: function(creep){
-            var transport = new Transport(creep);
-            return !transport.isFull();
+Nurse.prototype.healLongRangeCreep = function(){
+    if(this.longRangeCreeps)
+    {
+        var creepToHeal = this.mostHitCreep(this.longRangeCreeps)
+        this.creep.rangedHeal(creepToHeal);
+    }
+}
+
+Nurse.prototype.findDamagedCreepsInRange = function(range){
+    return this.creep.pos.findInRange(Game.MY_CREEPS,  range, {
+        filter: function(aCreep) {
+            return aCreep.hits < aCreep.hitsMax;
         }
     });
 }
 
-Miner.prototype.harvestClosestSource = function(){
-    var closestActiveSource = this.creep.pos.findClosest(Game.SOURCES);
-    if(closestActiveSource) {
-        this.creep.moveTo(closestActiveSource);
-        this.creep.harvest(closestActiveSource);
-    }        
+Nurse.prototype.mostHitCreep = function (creepList){
+    return _.first(creepList.sort(this.compareHits));
+}
+
+Nurse.prototype.compareHits = function(a,b){
+    return a.hits - b.hits;
+}
+
+Nurse.prototype.isThereAnyCloseRangeCreeps = function(){
+    
+    return this.closeRangeCreeps && this.closeRangeCreeps.length > 0;
+}
+
+Nurse.prototype.isThereAnyLongRangeCreeps = function(){
+    return this.longRangeCreeps && this.longRangeCreeps.length > 0;
 }

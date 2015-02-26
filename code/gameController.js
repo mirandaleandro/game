@@ -25,7 +25,7 @@
             this.room.createFlag(0, 0, 'GameHasStarted');
             this.room.createFlag(10, 26, 'AttackRange');
             this.room.createFlag(36, 38, 'Flag1');
-            this.room.createFlag(34, 35, 'Flag2');
+            this.room.createFlag(36, 38, 'Flag2');
             console.log("room flags set.");
             
             console.log("setting room structures.");

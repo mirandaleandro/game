@@ -24,17 +24,32 @@
          Memory.LegionPositions = [
              {
                 name:"LegionPosition0",
+                x:38,
+                y:44
+             },
+             {
+                name:"LegionPosition0",
+                x:38,
+                y:43
+             },
+             {
+                name:"LegionPosition0",
+                x:38,
+                y:42
+             },
+             {
+                name:"LegionPosition0",
+                x:39,
+                y:42
+             },
+             {
+                name:"LegionPosition0",
+                x:40,
+                y:42
+             },
+             {
+                name:"LegionPosition0",
                 x:41,
-                y:42
-             },
-             {
-                name:"LegionPosition0",
-                x:42,
-                y:42
-             },
-             {
-                name:"LegionPosition0",
-                x:43,
                 y:42
              }];
      },
@@ -50,13 +65,13 @@
              },
              {
                 role:'swordsman',
-                body: [Game.ATTACK, Game.ATTACK, Game.ATTACK, Game.MOVE, Game.MOVE],
+                body: [Game.ATTACK, Game.ATTACK, Game.MOVE, Game.MOVE],
                 nameTemplate:"Swordsman",
                 count:0
              },
              {
                 role:'archer',
-                body:[Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.TOUGH, Game.MOVE, Game.MOVE],
+                body:[Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.MOVE],
                 nameTemplate:"Archer",
                 count:0
              },
@@ -129,25 +144,10 @@
 
             levels:[
                 {
-                    buildQueue:['miner','transport', 'miner','settler', 'builder']
+                    buildQueue:['miner','transport', 'miner','settler', 'builder', 'settler_carrier']
                 },
                 {
-                    buildQueue:['swordsman','nurse','swordsman',]
-                },
-                {
-                    buildQueue:['settler_carrier']
-                },
-                {
-                    buildQueue:['swordsman','swordsman','swordsman','nurse']
-                }, 
-                {
-                    buildQueue:['assassin','assassin']
-                },
-                {
-                    buildQueue:['swordsman','swordsman','swordsman','swordsman','nurse','assassin']
-                },
-                {
-                    buildQueue:['swordsman','swordsman','swordsman','swordsman','assassin']   
+                    buildQueue:['swordsman','nurse','swordsman']
                 },
                 {
                     buildQueue:['legion']   
